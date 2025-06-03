@@ -9,19 +9,27 @@ function LoginForm({ onLogin }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('http://localhost:4000/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/login`, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        credentials: 'include',
+        body: JSON.stringify({ email, password }),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (response.ok) {
-      localStorage.setItem('token', data.token);     // ✅ Save token
-      onLogin(data.userId);                          // ✅ Tell app you're logged in
-    } else {
-      setError(data.error || 'Login failed');
+      if (response.ok) {
+        localStorage.setItem('token', data.token);
+        onLogin(data.userId);
+      } else {
+        setError(data.error || 'Login failed');
+      }
+    } catch (err) {
+      setError('Connection error. Please try again.');
     }
   };
 

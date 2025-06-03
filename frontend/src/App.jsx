@@ -36,7 +36,7 @@ function App() {
 
   const handleBarcodeScanned = async (barcode) => {
     try {
-      const foodRes = await fetch(`http://localhost:4000/api/foods/${barcode}`);
+      const foodRes = await fetch(`${import.meta.env.VITE_API_URL}/api/foods/${barcode}`);
       const food = await foodRes.json();
 
       if (food.requires_manual_weight) {
