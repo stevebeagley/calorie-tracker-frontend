@@ -1,0 +1,401 @@
+:root {
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+  font-weight: 300;
+
+  color-scheme: light dark;
+  color: #0E0730;
+  background-color: #EEEEEE;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 0;
+  padding-top: 1.74rem;
+  padding-bottom: .5rem;
+}
+
+h2 {
+  font-size: 1.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 6px;
+  border: 1px solid transparent;
+  padding: 0.3em .5em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: border-color 0.25s;
+  color: #0E0730;
+}
+button:hover {
+  background: #FFBA11;
+}
+
+/* button:focus,
+button:focus-visible {
+  outline: none;
+  offset-distance: 10px;
+} */
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.just-added {
+  background-color: #d1ffd6;
+  animation: flashIn 0.4s ease-in-out;
+}
+
+@keyframes flashIn {
+  0%   { background-color: #fffacd; }
+  50%  { background-color: #d1ffd6; }
+  100% { background-color: transparent; }
+}
+
+
+.pageContainer {
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  overflow: hidden;
+
+}
+
+.containerToday {
+  padding: 0 0 3rem 3rem;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 50vw;
+  max-height: 100vh;
+  overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.containerHistory {
+  padding: 0 3rem;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 50vw;
+  max-height: 100vh;
+  overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+
+
+
+
+ul.consumedList {
+  /* border: 1px solid red; */
+  border-radius: 12px;
+  display: block;
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0.5rem;
+  width: 100%; 
+  background: #ffffff;
+}
+
+.consumedList li {
+  border-bottom: 1px solid #EEEEEE;
+  padding: .5rem 1rem;
+  position: relative;
+}
+
+.consumedList li:last-of-type {
+  border-bottom: none
+}
+
+
+
+/* User Selector */
+.userSelector {
+display: flex;
+gap: .5rem;
+margin-bottom: 1rem;
+}
+
+.userSelector button {
+position:relative;
+top: -2px;
+padding: 0.5rem 1rem;
+font-weight: bold;
+border-radius: 0 0 8px 8px;
+background: #e7f0ff;
+color: #007bff;
+cursor: pointer;
+}
+
+
+
+
+
+
+.containerToday input[type="text"] {
+  padding: .75rem .75rem .75rem 3.5rem;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  background: #ffffff !important;
+  outline: none;
+  border: none;
+  width: calc(100% - 5.25rem);
+  left: 8px;
+  position:relative;
+  box-shadow: 0 0 0 4px #EEEEEE,0 0 0 8px #ffffff;
+}
+
+.containerToday input[type="text"]:focus {
+  border-radius: 12px;
+  box-shadow: 0 0 0 4px #EEEEEE,0 0 0 8px #00a110;
+  outline: none; 
+  transition: box-shadow 0.25s;
+
+}
+
+.welcomeText img {
+  position: relative;
+  top: -2px;
+}
+
+
+
+
+
+.welcomeText {
+  font-size: 1.25rem;
+  font-weight: 400 !important;
+  display: block;
+  border-radius: 12px;
+  padding: 0.25rem 1.5rem !important;
+  background: #0A568D;
+  margin-bottom: 2.5rem;
+  color: #ffffff;
+}
+
+p.remainingCalories {
+  font-size: 1rem;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+
+p.remainingCaloriesWeekly {
+  font-size: 1rem;
+  color: #0E0730 !important;
+  font-weight: 600;
+}
+
+
+
+
+
+.historyBar {
+  border: 4px solid white;
+  border-radius: 15px;
+
+}
+
+.historyBarFill {
+  border-radius: 15px;
+}
+
+
+.listContainer
+{position:relative;
+  margin-top: 1.25rem;
+}
+
+.listHeading {
+  display: inline-block;
+}
+
+.listButton {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  position: absolute;
+  top: 12px;
+  right: 0;
+}
+
+
+
+.scanCount {
+  background: #DFF6FF;
+  color: #0A568D;
+  padding: 2px;
+  border-radius: 4px;
+  font-weight: bold;
+  display: inline-block;
+  min-width: 32px;
+  text-align: center;
+  margin-right: 4px;
+}
+
+
+
+button.removeItem {
+  margin-left: 1rem;
+  position: absolute;
+  right: 5px;
+  top:5px;
+
+}
+
+
+.weeklySummary {
+  background: #DEDAF9; 
+  padding: 0.25rem 1.5rem !important;
+  border-radius: 12px;
+}
+
+.historySummary {
+  background: #FFE7AC; 
+  padding: 0.25rem 1.5rem !important;
+  border-radius: 12px;
+  margin-top: 40px !important;
+
+}
+
+.showAdminTools {
+  margin-top: 40px !important;
+}
+
+
+.columnSpacer {
+  display: block;
+  /* background: black; */
+  height: 170px;
+}
+
+
+
+
+.historyDetailCol p, .historyDetailCol li { padding: 0 !important; margin:0; font-size: 0.85em;}
+
+.historyTitle {
+  position: relative; 
+  height:20px;
+}
+
+.historyDate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-weight: 400;
+}
+
+.historyGoal {
+  position: absolute; 
+  top:0;
+  right: 0;
+}
+
+
+.historyGraphCol { border:1px solid blue; width:200px; display: inline-block;}
+
+span.selectedDate {
+  background: rgba(0,0,0,0.05);
+  display: inline-block;
+  padding:6px 12px;
+  position: relative;
+  top: -6px;
+  border-right: 1px solid #EEEEEE;
+  border-left: 1px solid #EEEEEE;
+}
+
+.backButton {
+  border-radius: 6px 0 0 6px;
+  padding-bottom: 2px;
+
+}
+
+.nextButton {
+  border-radius: 0 6px 6px 0;
+  padding-bottom: 2px;
+  
+}
+
+div.foodManager input {
+  border: 2px solid #FFBA11;
+  font-size: 1rem;
+  background: #ffffff !important;
+  padding: .5rem !important;
+  margin-bottom: .5rem;
+  width: 100% !important; 
+  border-radius: 6px;
+}
+
+div.foodManager input[type="checkbox"] {
+  border: 2px solid red;
+  font-size: 1rem;
+  background: #ffffff !important;
+  padding: .5rem !important;
+  margin-bottom: .5rem;
+  width: 100% !important; 
+  border-radius: 6px;
+}
+
+.scanInputContainer {
+  position: relative;
+  z-index: 10;
+}
+
+.scanInputIcon {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  z-index: 20;
+  opacity: 0.5;
+}
