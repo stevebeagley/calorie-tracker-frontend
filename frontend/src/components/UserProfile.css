@@ -1,0 +1,95 @@
+.user-profile {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-profile h2 {
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: #666;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007AFF;
+  box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.1);
+}
+
+.password-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.password-section h3 {
+  color: #666;
+  margin-bottom: 15px;
+  font-size: 1.1em;
+}
+
+.button-group {
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.button-group button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button-group button[type="submit"] {
+  background: #007AFF;
+  color: white;
+  border: none;
+}
+
+.button-group button[type="button"] {
+  background: #fff;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
+.error {
+  color: #dc3545;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #fff5f5;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.success {
+  color: #28a745;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #f0fff4;
+  border-radius: 4px;
+  text-align: center;
+} 
