@@ -9,6 +9,7 @@ import AdminFoodManager from './AdminFoodManager';
 import Modal from './Modal';
 import WeeklySummary from './WeeklySummary';
 import FoodSelectionModal from './components/FoodSelectionModal';
+import UserProfile from './components/UserProfile';
 import dayjs from 'dayjs';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
   const [scannedFood, setScannedFood] = useState(null);
   const [manualWeight, setManualWeight] = useState('');
   const [showFoodSelection, setShowFoodSelection] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
 
   const barcodeInputRef = useRef();
   const gramsInputRef = useRef(null);
@@ -147,7 +149,21 @@ function App() {
           barcodeInputRef.current?.focus();
         }} />
 
-        <h1>Calorie Tracker</h1>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1em' }}>
+          <h1>Calorie Tracker</h1>
+          <button 
+            onClick={() => setShowProfile(true)}
+            style={{
+              padding: '8px 16px',
+              borderRadius: '4px',
+              background: 'none',
+              border: '1px solid #ddd',
+              cursor: 'pointer'
+            }}
+          >
+            Edit Profile
+          </button>
+        </div>
 
         <div style={{ marginBottom: '1em' }}>
           <button className="backButton" onClick={goToPreviousDay}>
@@ -217,6 +233,15 @@ function App() {
         onClose={() => setShowFoodSelection(false)}
         onSelectFood={handleFoodSelect}
       />
+
+      {showProfile && (
+        <Modal onClose={() => setShowProfile(false)}>
+          <UserProfile 
+            userId={userId} 
+            onClose={() => setShowProfile(false)} 
+          />
+        </Modal>
+      )}
 
       {showManualWeightPrompt && (
         <Modal onClose={closeManualWeightModal}>
