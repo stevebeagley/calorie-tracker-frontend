@@ -5,7 +5,7 @@ import BarcodeInput from './components/BarcodeInput';
 import ConsumedList from './ConsumedList';
 import CalorieSummary from './CalorieSummary';
 import HistoryView from './HistoryView';
-import AdminFoodManager from './AdminFoodManager';
+import AdminPanel from './components/AdminPanel';
 import Modal from './Modal';
 import WeeklySummary from './WeeklySummary';
 import FoodSelectionModal from './components/FoodSelectionModal';
@@ -133,6 +133,9 @@ function App() {
     setShowFoodSelection(false);
   };
 
+  // Check if current user is admin
+  const isAdmin = userId === 2;
+
   // 🔐 Not logged in
   if (!userId) {
     return <LoginForm onLogin={(id) => {
@@ -150,7 +153,7 @@ function App() {
         }} />
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1em' }}>
-          <h1>Calorie Tracker</h1>
+          <h1>Calorie Tracker {isAdmin && <span style={{ fontSize: '0.6em', color: '#666' }}>(Admin)</span>}</h1>
           <button 
             onClick={() => setShowProfile(true)}
             style={{
@@ -212,10 +215,7 @@ function App() {
         <WeeklySummary userId={userId} refreshKey={refreshKey} />
         <HistoryView userId={userId} refreshKey={refreshKey} />
 
-        <button className="showAdminTools" onClick={() => setShowAdmin(prev => !prev)}>
-          {showAdmin ? 'Hide Admin Tools' : 'Show Admin Tools'}
-        </button>
-        {showAdmin && <AdminFoodManager />}
+        {isAdmin && <AdminPanel />}
 
         <button
           onClick={() => {
