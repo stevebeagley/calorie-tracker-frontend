@@ -351,4 +351,75 @@ app.patch('/api/foods/:id/image', async (req, res) => {
   }
 });
 
+// Update user profile
+app.patch('/api/users/:userId', authenticateToken, async (req, res) => {
+  const { userId } = req.params;
+  const { name, email, currentPassword, newPassword, daily_calorie_goal } = req.body;
+  
+  // Verify user is updating their own profile
+  if (parseInt(userId) !== req.userId) {
+    return res.sendStatus(403);
+  }
+
+  try {
+    // If changing password, verify current password
+    if (newPassword) {
+      const user = await pool.query('SELECT password_hash FROM users WHERE id = $1', [userId]);
+      const validPassword = await bcrypt.compare(currentPassword, user.rows[0].password_hash);
+      
+      if (!validPassword) {
+        return res.status(401).json({ error: 'Current password is incorrect' });
+      }
+    }
+
+    // Build update query dynamically based on provided fields
+    const updates = [];
+    const values = [];
+    let paramCount = 1;
+
+    if (name) {
+      updates.push(`name = $${paramCount}`);
+      values.push(name);
+      paramCount++;
+    }
+
+    if (email) {
+      updates.push(`email = $${paramCount}`);
+      values.push(email);
+      paramCount++;
+    }
+
+    if (newPassword) {
+      const password_hash = await bcrypt.hash(newPassword, 10);
+      updates.push(`password_hash = $${paramCount}`);
+      values.push(password_hash);
+      paramCount++;
+    }
+
+    if (daily_calorie_goal) {
+      updates.push(`daily_calorie_goal = $${paramCount}`);
+      values.push(daily_calorie_goal);
+      paramCount++;
+    }
+
+    if (updates.length === 0) {
+      return res.status(400).json({ error: 'No fields to update' });
+    }
+
+    values.push(userId);
+    const query = `
+      UPDATE users 
+      SET ${updates.join(', ')} 
+      WHERE id = $${paramCount}
+      RETURNING id, name, email, daily_calorie_goal
+    `;
+
+    const result = await pool.query(query, values);
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error('Error updating user:', err);
+    res.status(500).json({ error: 'Failed to update user' });
+  }
+});
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
